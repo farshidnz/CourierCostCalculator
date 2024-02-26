@@ -1,9 +1,47 @@
-﻿namespace CourierCostCalculator.Lib.Models;
+﻿using Ardalis.SmartEnum;
 
-public static class ParcelSize
+namespace CourierCostCalculator.Lib.Models;
+
+
+public abstract class ParcelSize(string name, int value) : SmartEnum<ParcelSize>(name, value)
 {
-    public const int Small = 10;
-    public const int Medium = 50;
-    public const int Large = 100;
-    public const int ExtraLarge = 100;
+    public static readonly ParcelSize Small = new SmallSize(nameof(Small), 1);
+    public static readonly ParcelSize Medium = new MediumSize(nameof(Small), 2);
+    public static readonly ParcelSize Large = new LargeSize(nameof(Small), 3);
+    public static readonly ParcelSize ExtraLarge = new ExtraLargeSize(nameof(Small), 4);
+    
+    public abstract double DimensionLimit();
+    public abstract double WeightLimit();
+    public abstract double Cost();
+    
+    private sealed class SmallSize(string name, int value) : ParcelSize(name, value)
+    {
+        public override double DimensionLimit() => 10;
+
+        public override double WeightLimit() => 1;
+        public override double Cost() => 3;
+    }
+    
+    private sealed class MediumSize(string name, int value) : ParcelSize(name, value)
+    {
+        public override double DimensionLimit() => 50;
+
+        public override double WeightLimit() => 3;
+        public override double Cost() => 8;
+    }
+    
+    private sealed class LargeSize(string name, int value) : ParcelSize(name, value)
+    {
+        public override double DimensionLimit() => 100;
+
+        public override double WeightLimit() => 6;
+        public override double Cost() => 15;
+    }
+    
+    private sealed class ExtraLargeSize(string name, int value) : ParcelSize(name, value)
+    {
+        public override double DimensionLimit() => 100;
+        public override double WeightLimit() => 10;
+        public override double Cost() => 25;
+    }
 }
