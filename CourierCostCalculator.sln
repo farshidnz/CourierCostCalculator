@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourierCostCalculator.Lib", "CourierCostCalculator.Lib\CourierCostCalculator.Lib.csproj", "{D54AA9C0-72A5-4890-9021-E8E18A8E194D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourierCostCalculator.Unit.Tests", "CourierCostCalculator.Unit.Tests\CourierCostCalculator.Unit.Tests.csproj", "{51088AA7-3746-4873-A2E0-544619595EB2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D54AA9C0-72A5-4890-9021-E8E18A8E194D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D54AA9C0-72A5-4890-9021-E8E18A8E194D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D54AA9C0-72A5-4890-9021-E8E18A8E194D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D54AA9C0-72A5-4890-9021-E8E18A8E194D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51088AA7-3746-4873-A2E0-544619595EB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51088AA7-3746-4873-A2E0-544619595EB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51088AA7-3746-4873-A2E0-544619595EB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51088AA7-3746-4873-A2E0-544619595EB2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

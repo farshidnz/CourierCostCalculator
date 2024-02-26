@@ -1,0 +1,13 @@
+**/.vs/*
+**/.idea/*
+**/bin/*
+**/obj/*
+**/Properties/PublishProfiles/*
+**/*.user
+**/.vscode/*
+**/specflowout/*
+**/.history/*
+**/TestResults/*
+helm/secret
+newman/*
+**/.env
