@@ -18,38 +18,48 @@ public static class CourierCostMultipleParcelsCalculator
             SpeedyShipping = speedyShipping
         };
     }
+
     public static double CalculateCost(Parcel parcel)
     {
-        var weightLimit = GetWeightLimitForParcelSize(parcel.Dimension);
-        var cost =  GetBaseCostForParcelSize(parcel.Dimension);
-        
+        var weightLimit = GetWeightLimitForParcelSize(parcel);
+        var cost = GetBaseCostForParcelSize(parcel);
+
         if (parcel.Weight > weightLimit)
         {
             var extraWeight = parcel.Weight - weightLimit;
-           return cost + extraWeight * 2;
+            var extraWeightCharge = parcel.Weight >= ParcelSize.Heavy.WeightLimit() ? 1 : 2;
+            return cost + extraWeight * extraWeightCharge;
         }
 
         return cost;
     }
-    
-    private static double GetBaseCostForParcelSize(double maxDimension)
+
+    private static double GetBaseCostForParcelSize(Parcel parcel)
     {
-        if (maxDimension < ParcelSize.Small.DimensionLimit())
+        if (parcel.Weight >= ParcelSize.Heavy.WeightLimit())
+            return ParcelSize.Heavy.Cost();
+        
+        var parcelDimension = parcel.Dimension;
+        if (parcelDimension < ParcelSize.Small.DimensionLimit())
             return ParcelSize.Small.Cost();
-        if (maxDimension < ParcelSize.Medium.DimensionLimit())
+        if (parcelDimension < ParcelSize.Medium.DimensionLimit())
             return ParcelSize.Medium.Cost();
-        if (maxDimension < ParcelSize.Large.DimensionLimit())
+        if (parcelDimension < ParcelSize.Large.DimensionLimit())
             return ParcelSize.Large.Cost();
         return ParcelSize.ExtraLarge.Cost();
     }
-    
-    private static double GetWeightLimitForParcelSize(double maxDimension)
+
+    private static double GetWeightLimitForParcelSize(Parcel parcel)
     {
-        if (maxDimension < ParcelSize.Small.DimensionLimit())
+        if (parcel.Weight >= ParcelSize.Heavy.WeightLimit())
+            return ParcelSize.Heavy.WeightLimit();
+        
+        var parcelDimension = parcel.Dimension;
+        if (parcelDimension < ParcelSize.Small.DimensionLimit())
             return ParcelSize.Small.WeightLimit();
-        else if (maxDimension < ParcelSize.Medium.DimensionLimit())
+        else if (parcelDimension < ParcelSize.Medium.DimensionLimit())
             return ParcelSize.Medium.WeightLimit();
-        else if (maxDimension < ParcelSize.Large.DimensionLimit())
+        else if (parcelDimension < ParcelSize.Large.DimensionLimit())
             return ParcelSize.Large.WeightLimit();
         else
             return ParcelSize.ExtraLarge.WeightLimit();

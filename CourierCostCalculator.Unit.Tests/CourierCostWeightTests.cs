@@ -105,4 +105,38 @@ public class CourierCostWeightTests
             Assert.That(totalCost.Parcels.First().Cost, Is.EqualTo(6));
         });
     }
+    
+    [Test]
+    public void CalculateCost_ExtraLargeParcelOverWeightLimit_ReturnsWithExtraCharge()
+    {
+        var parcel = new Parcel(500, 500, 500, 50);
+        var totalCost = Calculator.CalculateCost(new List<Parcel> { parcel });
+        Assert.Multiple(() =>
+        {
+            Assert.That(totalCost.FinalPrice, Is.EqualTo(50));
+            Assert.That(totalCost.Parcels, Has.Count.EqualTo(1));
+        });
+        
+        Assert.Multiple(() =>
+        {
+            Assert.That(totalCost.Parcels.First().Cost, Is.EqualTo(50));
+        });
+    }
+    
+    [Test]
+    public void CalculateCost_SmallParcelHeavyWeightLimit_ReturnsWithExtraCharge()
+    {
+        var parcel = new Parcel(2, 2, 2, 55);
+        var totalCost = Calculator.CalculateCost(new List<Parcel> { parcel });
+        Assert.Multiple(() =>
+        {
+            Assert.That(totalCost.FinalPrice, Is.EqualTo(55));
+            Assert.That(totalCost.Parcels, Has.Count.EqualTo(1));
+        });
+        
+        Assert.Multiple(() =>
+        {
+            Assert.That(totalCost.Parcels.First().Cost, Is.EqualTo(55));
+        });
+    }
 }
