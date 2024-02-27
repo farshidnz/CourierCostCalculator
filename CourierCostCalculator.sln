@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourierCostCalculator.Lib",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourierCostCalculator.Unit.Tests", "CourierCostCalculator.Unit.Tests\CourierCostCalculator.Unit.Tests.csproj", "{51088AA7-3746-4873-A2E0-544619595EB2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourierCostCalculator.API", "Sample\CourierCostCalculator.API\CourierCostCalculator.API.csproj", "{4C84D395-B646-4EB6-BD3D-C45502F0DBEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourierCostCalculator.API.Integration.Tests", "Sample\CourierCostCalculator.API.Integration.Tests\CourierCostCalculator.API.Integration.Tests.csproj", "{8D295A68-E7CC-468A-B95A-92B4A3E0FBCF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{51088AA7-3746-4873-A2E0-544619595EB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51088AA7-3746-4873-A2E0-544619595EB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51088AA7-3746-4873-A2E0-544619595EB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C84D395-B646-4EB6-BD3D-C45502F0DBEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C84D395-B646-4EB6-BD3D-C45502F0DBEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C84D395-B646-4EB6-BD3D-C45502F0DBEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C84D395-B646-4EB6-BD3D-C45502F0DBEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D295A68-E7CC-468A-B95A-92B4A3E0FBCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D295A68-E7CC-468A-B95A-92B4A3E0FBCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D295A68-E7CC-468A-B95A-92B4A3E0FBCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D295A68-E7CC-468A-B95A-92B4A3E0FBCF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
