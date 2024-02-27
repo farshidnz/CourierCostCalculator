@@ -43,7 +43,7 @@ public class CourierCostMultipleParcelsCalculator
     }
 
     [Test]
-    public void CalculateCost_MixParcel_Returns8()
+    public void CalculateCost_MixParcel_Returns3()
     {
         var parcel1 = new Parcel(5, 5, 5,1){ Name = "parcel1"};
         var parcel2 = new Parcel(40, 40, 40, 1){ Name = "parcel2"};

@@ -9,7 +9,10 @@ public record TotalCost(List<ParcelCalculatedCost> Parcels)
         get
         {
             var sum = Parcels.Sum(p => p.Cost);
-            return SpeedyShipping ? sum * 2 : sum;
+            var priceAfterDiscount = sum - TotalDiscount;
+            return SpeedyShipping ? priceAfterDiscount * 2 : priceAfterDiscount;
         }
     }
+
+    public double TotalDiscount { get; set; }
 };

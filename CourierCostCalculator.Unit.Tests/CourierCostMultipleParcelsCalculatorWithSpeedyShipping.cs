@@ -7,7 +7,7 @@ namespace CourierCostCalculator.Unit.Tests;
 public class CourierCostMultipleParcelsCalculatorWithSpeedyShipping
 {
     [Test]
-    public void CalculateCost_SmallParcel_Returns3()
+    public void CalculateCost_SmallParcel()
     {
         var parcelName = "Parcel";
         var parcel = new Parcel(5, 5, 5,1) { Name = parcelName };
@@ -22,7 +22,7 @@ public class CourierCostMultipleParcelsCalculatorWithSpeedyShipping
     }
 
     [Test]
-    public void CalculateCost_MediumParcel_Returns16()
+    public void CalculateCost_MediumParcel()
     {
         var parcel1 = new Parcel(40, 40, 40,1) { Name = "parcel1" };
         var parcel2 = new Parcel(40, 40, 41,1) { Name = "parcel2" };
@@ -41,7 +41,7 @@ public class CourierCostMultipleParcelsCalculatorWithSpeedyShipping
     }
 
     [Test]
-    public void CalculateCost_MixParcel_Returns8()
+    public void CalculateCost_MixParcel()
     {
         var parcel1 = new Parcel(5, 5, 5,1) { Name = "parcel1" };
         var parcel2 = new Parcel(40, 40, 40,1) { Name = "parcel2" };
