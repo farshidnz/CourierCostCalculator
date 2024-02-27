@@ -1,11 +1,12 @@
+using CourierCostCalculator.Lib;
 using CourierCostCalculator.Lib.Models;
-using Calculator = CourierCostCalculator.Lib.CourierCostMultipleParcelsCalculator;
 
 namespace CourierCostCalculator.Unit.Tests;
 
 [TestFixture]
 public class CourierCostCalculatorDiscountTests
 {
+    private readonly ICourierCostCalculator _calculator = new Lib.CourierCostCalculator();  
     [Test]
     public void CalculateCost_MediumParcel_TwoDiscounts()
     {
@@ -16,7 +17,7 @@ public class CourierCostCalculatorDiscountTests
         var parcel4 = new Parcel(40, 40, 40,4){ Name = parcelName};
         var parcel5 = new Parcel(40, 40, 40,4){ Name = parcelName};
         var parcel6 = new Parcel(40, 40, 40,4){ Name = parcelName};
-        var totalCost = Calculator.CalculateCost(new List<Parcel>
+        var totalCost = _calculator.CalculateCost(new List<Parcel>
         {
             parcel1, parcel2, parcel3, parcel4, parcel5, parcel6
         });
@@ -42,7 +43,7 @@ public class CourierCostCalculatorDiscountTests
         var parcel3 = new Parcel(40, 40, 40,1){ Name = parcelName};
         var parcel4 = new Parcel(40, 40, 40,4){ Name = parcelName};
         var parcel5 = new Parcel(40, 40, 40,4){ Name = parcelName};
-        var totalCost = Calculator.CalculateCost(new List<Parcel>
+        var totalCost = _calculator.CalculateCost(new List<Parcel>
         {
             parcel1, parcel2, parcel3, parcel4, parcel5
         });
@@ -70,7 +71,7 @@ public class CourierCostCalculatorDiscountTests
         var parcel3 = new Parcel(5, 5, 5,1){ Name = parcelName};
         var parcel4 = new Parcel(5, 5, 5,1){ Name = parcelName};
         var parcel5 = new Parcel(5, 5, 5,1){ Name = parcelName};
-        var totalCost = Calculator.CalculateCost(new List<Parcel>
+        var totalCost = _calculator.CalculateCost(new List<Parcel>
         {
             parcel1, parcel2, parcel3, parcel4, parcel5
         });
@@ -101,7 +102,7 @@ public class CourierCostCalculatorDiscountTests
         var parcel6 = new Parcel(5, 5, 5,1){ Name = parcelName};
         var parcel7 = new Parcel(5, 5, 5,1){ Name = parcelName};
         var parcel8 = new Parcel(5, 5, 5,1){ Name = parcelName};
-        var totalCost = Calculator.CalculateCost(new List<Parcel>
+        var totalCost = _calculator.CalculateCost(new List<Parcel>
         {
             parcel1, parcel2, parcel3, parcel4, parcel5, parcel6, parcel7, parcel8
         });

@@ -1,17 +1,19 @@
+using CourierCostCalculator.Lib;
 using CourierCostCalculator.Lib.Models;
-using Calculator = CourierCostCalculator.Lib.CourierCostMultipleParcelsCalculator;
 
 namespace CourierCostCalculator.Unit.Tests;
 
 [TestFixture]
 public class CourierCostMultipleParcelsCalculatorWithSpeedyShipping
 {
+    private readonly ICourierCostCalculator _calculator = new Lib.CourierCostCalculator();  
+    
     [Test]
     public void CalculateCost_SmallParcel()
     {
         var parcelName = "Parcel";
         var parcel = new Parcel(5, 5, 5,1) { Name = parcelName };
-        var totalCost = Calculator.CalculateCost(new List<Parcel> { parcel }, speedyShipping: true);
+        var totalCost = _calculator.CalculateCost(new List<Parcel> { parcel }, speedyShipping: true);
         Assert.Multiple(() =>
         {
             Assert.That(totalCost.FinalPrice, Is.EqualTo(6));
@@ -26,7 +28,7 @@ public class CourierCostMultipleParcelsCalculatorWithSpeedyShipping
     {
         var parcel1 = new Parcel(40, 40, 40,1) { Name = "parcel1" };
         var parcel2 = new Parcel(40, 40, 41,1) { Name = "parcel2" };
-        var totalCost = Calculator.CalculateCost(new List<Parcel> { parcel1, parcel2 },
+        var totalCost = _calculator.CalculateCost(new List<Parcel> { parcel1, parcel2 },
                 speedyShipping: true);
         Assert.Multiple(() =>
         {
@@ -46,7 +48,7 @@ public class CourierCostMultipleParcelsCalculatorWithSpeedyShipping
         var parcel1 = new Parcel(5, 5, 5,1) { Name = "parcel1" };
         var parcel2 = new Parcel(40, 40, 40,1) { Name = "parcel2" };
         var parcel3 = new Parcel(50, 50, 50,1) { Name = "parcel3" };
-        var totalCost = Calculator.CalculateCost(new List<Parcel> { parcel1, parcel2, parcel3 },
+        var totalCost = _calculator.CalculateCost(new List<Parcel> { parcel1, parcel2, parcel3 },
                 speedyShipping: true);
         Assert.Multiple(() =>
         {

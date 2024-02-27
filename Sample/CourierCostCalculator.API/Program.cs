@@ -11,33 +11,24 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
         builder.Services.AddAutoMapper(expression => { expression.Internal().MethodMappingEnabled = false; },
             typeof(ParcelMapping).Assembly);
+        
+        
+        builder.Services.AddCourierCostCalculator();
 
         var app = builder.Build();
-
-
-// Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
 
         app.UseHttpsRedirection();
 
         var mapper = app.Services.GetService<IMapper>();
+        var courierCalculator = app.Services.GetService<ICourierCostCalculator>();
 
         app.MapPost("/CalculateCourierParcels", ([FromBody] List<Parcel> parcels) =>
             {
                 var mappedParcel = mapper.Map<List<CourierCostCalculator.Lib.Models.Parcel>>(parcels);
 
-                return CourierCostMultipleParcelsCalculator.CalculateCost(mappedParcel);
+                return courierCalculator.CalculateCost(mappedParcel);
             })
             .WithName("CalculateCourierParcelsPrice")
             .WithOpenApi();

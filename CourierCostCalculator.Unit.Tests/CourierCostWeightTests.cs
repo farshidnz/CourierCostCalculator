@@ -1,16 +1,18 @@
-﻿using CourierCostCalculator.Lib.Models;
-using Calculator = CourierCostCalculator.Lib.CourierCostMultipleParcelsCalculator;
+﻿using CourierCostCalculator.Lib;
+using CourierCostCalculator.Lib.Models;
 
 namespace CourierCostCalculator.Unit.Tests;
 
 [TestFixture]
 public class CourierCostWeightTests
 {
+    private readonly ICourierCostCalculator _calculator = new Lib.CourierCostCalculator();  
+    
     [Test]
     public void CalculateCost_SmallParcel_Returns3()
     {
         var parcel = new Parcel(5, 5, 5, 0.5);
-        var totalCost = Calculator.CalculateCost(new List<Parcel> { parcel });
+        var totalCost = _calculator.CalculateCost(new List<Parcel> { parcel });
         Assert.Multiple(() =>
         {
             Assert.That(totalCost.FinalPrice, Is.EqualTo(3));
@@ -26,7 +28,7 @@ public class CourierCostWeightTests
     public void CalculateCost_MediumParcel_Returns8()
     {
         var parcel = new Parcel(40, 40, 40, 2);
-        var totalCost = Calculator.CalculateCost(new List<Parcel> { parcel });
+        var totalCost = _calculator.CalculateCost(new List<Parcel> { parcel });
         Assert.Multiple(() =>
         {
             Assert.That(totalCost.FinalPrice, Is.EqualTo(8));
@@ -42,7 +44,7 @@ public class CourierCostWeightTests
     public void CalculateCost_LargeParcel_Returns15()
     {
         var parcel = new Parcel(80, 80, 80, 5);
-        var totalCost = Calculator.CalculateCost(new List<Parcel> { parcel });
+        var totalCost = _calculator.CalculateCost(new List<Parcel> { parcel });
         Assert.Multiple(() =>
         {
             Assert.That(totalCost.FinalPrice, Is.EqualTo(15));
@@ -58,7 +60,7 @@ public class CourierCostWeightTests
     public void CalculateCost_XLParcel_Returns25()
     {
         var parcel = new Parcel(120, 30, 50, 8);
-        var totalCost = Calculator.CalculateCost(new List<Parcel> { parcel });
+        var totalCost = _calculator.CalculateCost(new List<Parcel> { parcel });
         Assert.Multiple(() =>
         {
             Assert.That(totalCost.FinalPrice, Is.EqualTo(25));
@@ -75,7 +77,7 @@ public class CourierCostWeightTests
     {
         var parcel1 = new Parcel(5, 5, 5, 2);
         var parcel2 = new Parcel(40, 40, 40, 5);
-        var totalCost = Calculator.CalculateCost(new List<Parcel> { parcel1, parcel2 }, true);
+        var totalCost = _calculator.CalculateCost(new List<Parcel> { parcel1, parcel2 }, true);
         
         Assert.Multiple(() =>
         {
@@ -93,7 +95,7 @@ public class CourierCostWeightTests
     public void CalculateCost_SmallParcelOverWeightLimit_ReturnsWithExtraCharge()
     {
         var parcel = new Parcel(5, 5, 5, 2.5);
-        var totalCost = Calculator.CalculateCost(new List<Parcel> { parcel });
+        var totalCost = _calculator.CalculateCost(new List<Parcel> { parcel });
         Assert.Multiple(() =>
         {
             Assert.That(totalCost.FinalPrice, Is.EqualTo(6));
@@ -110,7 +112,7 @@ public class CourierCostWeightTests
     public void CalculateCost_ExtraLargeParcelOverWeightLimit_ReturnsWithExtraCharge()
     {
         var parcel = new Parcel(500, 500, 500, 50);
-        var totalCost = Calculator.CalculateCost(new List<Parcel> { parcel });
+        var totalCost = _calculator.CalculateCost(new List<Parcel> { parcel });
         Assert.Multiple(() =>
         {
             Assert.That(totalCost.FinalPrice, Is.EqualTo(50));
@@ -127,7 +129,7 @@ public class CourierCostWeightTests
     public void CalculateCost_SmallParcelHeavyWeightLimit_ReturnsWithExtraCharge()
     {
         var parcel = new Parcel(2, 2, 2, 55);
-        var totalCost = Calculator.CalculateCost(new List<Parcel> { parcel });
+        var totalCost = _calculator.CalculateCost(new List<Parcel> { parcel });
         Assert.Multiple(() =>
         {
             Assert.That(totalCost.FinalPrice, Is.EqualTo(55));
